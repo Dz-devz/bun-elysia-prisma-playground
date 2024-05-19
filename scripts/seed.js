@@ -27,8 +27,8 @@ const postToCreate = [
 ];
 
 const seed = async (posts) => {
-  console.log("Creating Posts ...");
   for (let i = 0; i < posts.length; i++) {
+    console.log("Creating Posts ...", posts[i]);
     await client.post.upsert({
       where: { id: posts[i].id },
       update: posts[i],
@@ -46,4 +46,5 @@ seed(postToCreate)
   })
   .finally(() => {
     client.$disconnect();
+    console.log("Disconnected!");
   });
